@@ -11,3 +11,4 @@ C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\obj\Debug\Pos.Data.cspro
 C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\obj\Debug\Pos.Data.csproj.CopyComplete
 C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\obj\Debug\Pos.Data.dll
 C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\obj\Debug\Pos.Data.pdb
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\bin\Debug\ko\EntityFramework.SqlServer.resources.dll

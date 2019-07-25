@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pos.Data
 {
-    static class DataRepository
+    public class DataRepository
     {
         static DataRepository()
         {

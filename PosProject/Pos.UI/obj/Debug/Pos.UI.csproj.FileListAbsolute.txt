@@ -96,3 +96,6 @@ C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\bin\Debug\es\DevExpress.Of
 C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\bin\Debug\ja\DevExpress.Office.v19.1.Core.resources.dll
 C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\bin\Debug\ru\DevExpress.Office.v19.1.Core.resources.dll
 C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\obj\Debug\Pos.UI.exe.licenses
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\bin\Debug\ko\EntityFramework.SqlServer.resources.dll

@@ -8,5 +8,12 @@ namespace Pos.Data
 {
     public class MenuData
     {
+        public Menu GetByName(string name)
+        {
+            using(PosEntities context = new PosEntities())
+            {
+                return context.Menus.FirstOrDefault(x => x.Name == name);
+            }
+        }
     }
 }
