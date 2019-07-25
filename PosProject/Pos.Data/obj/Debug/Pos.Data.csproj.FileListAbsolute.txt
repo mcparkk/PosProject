@@ -1,0 +1,13 @@
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\bin\Debug\Pos.Data.dll.config
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\bin\Debug\Pos.Data.dll
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\bin\Debug\Pos.Data.pdb
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\bin\Debug\EntityFramework.dll
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\bin\Debug\EntityFramework.xml
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\bin\Debug\ko\EntityFramework.resources.dll
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\obj\Debug\Pos.Data.csprojAssemblyReference.cache
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\obj\Debug\Pos.Data.csproj.CoreCompileInputs.cache
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\obj\Debug\Pos.Data.csproj.CopyComplete
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\obj\Debug\Pos.Data.dll
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.Data\obj\Debug\Pos.Data.pdb
