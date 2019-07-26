@@ -15,6 +15,8 @@ namespace Pos.UI
 {
     public partial class OrderForm : XtraForm
     {
+        public const string DefaultValue = "0";
+
         public OrderForm()
         {
             InitializeComponent();
@@ -24,8 +26,8 @@ namespace Pos.UI
             // Call the LoadAsync method to asynchronously get the data for the given DbSet from the database.
             dbContext.SalesLines.LoadAsync().ContinueWith(loadTask =>
             {
-    // Bind data to control when loading complete
-    salesLinesBindingSource.DataSource = dbContext.SalesLines.Local.ToBindingList();
+             // Bind data to control when loading complete
+            salesLinesBindingSource.DataSource = dbContext.SalesLines.Local.ToBindingList();
             }, System.Threading.Tasks.TaskScheduler.FromCurrentSynchronizationContext());
         }
 
@@ -33,6 +35,14 @@ namespace Pos.UI
         {
             base.OnLoad(e);
             GrcSales.DataSource = salesLines;
+            //DataBinding(btnEspresso);
+            
+
+        }
+
+        private void DataBinding(MenuInfoButton button)
+        {
+            button.menu = DataRepository.Menu.GetByName(button.Text);
         }
 
         List<SalesLine> salesLines = new List<SalesLine>();
@@ -40,14 +50,13 @@ namespace Pos.UI
 
         private void MenuButtonClicked(object sender, EventArgs e)
         {
+           
             var menu = DataRepository.Menu.GetByName(((SimpleButton)sender).Text.ToString());
             var salesLine = new SalesLine();
             // 새로 들어갈 라인
             salesLine.MenuName = menu.Name;
             salesLine.MenuUnitPrice = menu.UnitPrice;
             
-            
-
             // 중복된 이름이 없을경우
             var existingSalesLine = salesLines.FirstOrDefault(x => x.MenuName == salesLine.MenuName);
 
@@ -64,8 +73,75 @@ namespace Pos.UI
                 // 있음
                 // quantity ++
             }
+            
+            GrvSales.RefreshData();
+
+            int sum=0;
+            foreach(var salesline in salesLines)
+            {
+                sum += salesline.TotalPrice;
+            }
+            txbTotalPrice.Text = sum.ToString();
+        }
+
+        //private void AddTotalPrice(object sender, EventArgs e)
+        //{
+            
+
+        //    var row = GrvSales.GetFocusedDataRow();
+             
+            
+        //}
+
+        private void NumberBottonClicked(object sender, EventArgs e)
+        {
+            if ((txbReceivedMoney.Text.ToString()) == "0")
+            {
+                var text = ((SimpleButton)sender).Text.ToString();
+                if (text == "0" || text == "00")
+                    return;
+                txbReceivedMoney.Text = text;
+                return;
+            }
+
+            var number = ((SimpleButton)sender).Text.ToString();
+            
+            txbReceivedMoney.Text += number;
+        }
+
+        private void BackSpaceButtonClicked(object sender, EventArgs e)
+        {
+            if (txbReceivedMoney.Text.Length == 1)
+            {
+                txbReceivedMoney.Text = "0";
+                return;
+            }
+            else if(txbReceivedMoney.Text.Length > 0)
+            {
+                txbReceivedMoney.Text = txbReceivedMoney.Text.Remove(txbReceivedMoney.Text.Length - 1, 1);
+            }
+        }
+
+        private void GrvSales_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            var quantity = (int) GrvSales.GetRowCellValue(GrvSales.FocusedRowHandle, GrvSales.FocusedColumn);
+            var menuName = (string)GrvSales.GetRowCellValue(GrvSales.FocusedRowHandle, GrvSales.Columns.ColumnByFieldName("MenuName"));
+
+            // list update
+            var line = salesLines.FirstOrDefault(x => x.MenuName == menuName);
+            line.Quantity = quantity;
+            line.TotalPrice = quantity * line.MenuUnitPrice;
+
+            // update view & total
 
             GrvSales.RefreshData();
+
+            int sum = 0;
+            foreach (var salesline in salesLines)
+            {
+                sum += salesline.TotalPrice;
+            }
+            txbTotalPrice.Text = sum.ToString();
         }
     }
 }
