@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Pos.Data;
 using System.Data.Entity;
+using System.Collections;
 
 namespace Pos.UI
 {
@@ -26,38 +27,32 @@ namespace Pos.UI
             // Call the LoadAsync method to asynchronously get the data for the given DbSet from the database.
             dbContext.SalesLines.LoadAsync().ContinueWith(loadTask =>
             {
-             // Bind data to control when loading complete
-            salesLinesBindingSource.DataSource = dbContext.SalesLines.Local.ToBindingList();
+                // Bind data to control when loading complete
+                salesLinesBindingSource.DataSource = dbContext.SalesLines.Local.ToBindingList();
             }, System.Threading.Tasks.TaskScheduler.FromCurrentSynchronizationContext());
         }
 
+
+        
+        List<SalesLine> salesLines = new List<SalesLine>();
+        //리스트뷰에 정보
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             GrcSales.DataSource = salesLines;
-            //DataBinding(btnEspresso);
-            
-
         }
 
-        private void DataBinding(MenuInfoButton button)
-        {
-            button.menu = DataRepository.Menu.GetByName(button.Text);
-        }
-
-        List<SalesLine> salesLines = new List<SalesLine>();
-        //ㄹ스트뷰에 정보
-            
+      
 
         private void MenuButtonClicked(object sender, EventArgs e)
         {
-           
+
             var menu = DataRepository.Menu.GetByName(((SimpleButton)sender).Text.ToString());
             var salesLine = new SalesLine();
             // 새로 들어갈 라인
             salesLine.MenuName = menu.Name;
             salesLine.MenuUnitPrice = menu.UnitPrice;
-            
+
             // 중복된 이름이 없을경우
             var existingSalesLine = salesLines.FirstOrDefault(x => x.MenuName == salesLine.MenuName);
 
@@ -69,30 +64,18 @@ namespace Pos.UI
             }
             else
             {
+
                 existingSalesLine.Quantity++;
                 existingSalesLine.TotalPrice = existingSalesLine.MenuUnitPrice * existingSalesLine.Quantity;
                 // 있음
                 // quantity ++
             }
-            
+
             GrvSales.RefreshData();
+            
+            UpdateLblTotalText();
 
-            int sum=0;
-            foreach(var salesline in salesLines)
-            {
-                sum += salesline.TotalPrice;
-            }
-            txbTotalPrice.Text = sum.ToString();
         }
-
-        //private void AddTotalPrice(object sender, EventArgs e)
-        //{
-            
-
-        //    var row = GrvSales.GetFocusedDataRow();
-             
-            
-        //}
 
         private void NumberBottonClicked(object sender, EventArgs e)
         {
@@ -106,7 +89,7 @@ namespace Pos.UI
             }
 
             var number = ((SimpleButton)sender).Text.ToString();
-            
+
             txbReceivedMoney.Text += number;
         }
 
@@ -117,7 +100,7 @@ namespace Pos.UI
                 txbReceivedMoney.Text = "0";
                 return;
             }
-            else if(txbReceivedMoney.Text.Length > 0)
+            else if (txbReceivedMoney.Text.Length > 0)
             {
                 txbReceivedMoney.Text = txbReceivedMoney.Text.Remove(txbReceivedMoney.Text.Length - 1, 1);
             }
@@ -125,7 +108,7 @@ namespace Pos.UI
 
         private void GrvSales_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            var quantity = (int) GrvSales.GetRowCellValue(GrvSales.FocusedRowHandle, GrvSales.FocusedColumn);
+            var quantity = (int)GrvSales.GetRowCellValue(GrvSales.FocusedRowHandle, GrvSales.FocusedColumn);
             var menuName = (string)GrvSales.GetRowCellValue(GrvSales.FocusedRowHandle, GrvSales.Columns.ColumnByFieldName("MenuName"));
 
             // list update
@@ -135,14 +118,43 @@ namespace Pos.UI
 
             // update view & total
 
+            
             GrvSales.RefreshData();
 
+            //업데이트 토탈
+            UpdateLblTotalText();
+        }
+
+        private void UpButtonClicked(object sender, EventArgs e)
+        {
+            // 선택된 컬럼
+            
+
+            DataRepository.Sales.UpAndDownButtonClicked(GrvSales, salesLines, true);
+
+            // 업데이트 토탈
+            UpdateLblTotalText();
+
+        }
+
+        private void DownButtonClicked(object sender, EventArgs e)
+        {
+           
+            DataRepository.Sales.UpAndDownButtonClicked(GrvSales, salesLines, false);
+
+            // 업데이트 토탈
+            UpdateLblTotalText();
+        }
+
+        private void UpdateLblTotalText()
+        {
             int sum = 0;
             foreach (var salesline in salesLines)
             {
                 sum += salesline.TotalPrice;
             }
             txbTotalPrice.Text = sum.ToString();
-        }
+
+        } 
     }
 }
