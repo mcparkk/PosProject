@@ -46,6 +46,7 @@ namespace Pos.UI
         }
 
         List<SalesLine> salesLines = new List<SalesLine>();
+        //ㄹ스트뷰에 정보
             
 
         private void MenuButtonClicked(object sender, EventArgs e)
