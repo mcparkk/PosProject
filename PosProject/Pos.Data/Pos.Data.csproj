@@ -62,6 +62,7 @@
     <Compile Include="Data\SalesLineData.cs" />
     <Compile Include="Data\SupplierData.cs" />
     <Compile Include="Entities\Menu.cs" />
+    <Compile Include="Entities\OrderLine.cs" />
     <Compile Include="Entities\Sale.cs" />
     <Compile Include="Entities\SalesLine.cs" />
     <Compile Include="Ingredient.cs">

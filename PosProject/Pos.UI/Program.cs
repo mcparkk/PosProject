@@ -20,6 +20,7 @@ namespace Pos.UI
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
+            //Application.Run(new IngredientsOrder());
             Application.Run(new OrderForm());
         }
     }

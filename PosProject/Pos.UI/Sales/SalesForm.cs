@@ -70,7 +70,7 @@ namespace Pos.UI
                 salesLines.Add(salesLine);
             }
             else
-            { 
+            {
                 existingSalesLine.Quantity++;
                 existingSalesLine.TotalPrice = existingSalesLine.MenuUnitPrice * existingSalesLine.Quantity;
                 // 있음
@@ -171,6 +171,8 @@ namespace Pos.UI
             GrvSales.RefreshData();
 
             txbTotalPrice.Text = DefaultValue;
+            txbChangeMoney.Text = DefaultValue;
+            txbReceivedMoney.Text = DefaultValue;
 
         }
 
@@ -186,7 +188,7 @@ namespace Pos.UI
 
             ////salesLines 초기화
             //salesLines.RemoveRange(0, salesLines.Count());
-            
+
             //// 그리드 뷰 초기화 
             //GrvSales.RefreshData();
 
@@ -195,6 +197,13 @@ namespace Pos.UI
 
         }
 
-
+        private void txbMoneyChange(object sender, EventArgs e)
+        { 
+            var totalPrice = decimal.Parse(txbTotalPrice.Text);
+            var receiveMoney = decimal.Parse(txbReceivedMoney.Text);
+            if (receiveMoney > totalPrice)
+                txbChangeMoney.Text = (receiveMoney - totalPrice).ToString();
+            else txbChangeMoney.Text = DefaultValue; 
+        }
     }
 }

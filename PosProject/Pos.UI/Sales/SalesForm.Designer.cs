@@ -77,7 +77,7 @@
             this.btnUpMenuCount = new DevExpress.XtraEditors.SimpleButton();
             this.btnDownMenuCount = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnOrderComplate = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSalesComplate = new DevExpress.XtraEditors.SimpleButton();
             this.btnOrderCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnCard = new DevExpress.XtraEditors.SimpleButton();
             this.btnCash = new DevExpress.XtraEditors.SimpleButton();
@@ -429,6 +429,7 @@
             this.txbChangeMoney.Name = "txbChangeMoney";
             this.txbChangeMoney.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.txbChangeMoney.Properties.Appearance.Options.UseFont = true;
+            this.txbChangeMoney.Properties.Mask.EditMask = "c";
             this.txbChangeMoney.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tbpSummary.SetRow(this.txbChangeMoney, 2);
             this.txbChangeMoney.Size = new System.Drawing.Size(192, 40);
@@ -443,10 +444,12 @@
             this.txbReceivedMoney.Name = "txbReceivedMoney";
             this.txbReceivedMoney.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.txbReceivedMoney.Properties.Appearance.Options.UseFont = true;
+            this.txbReceivedMoney.Properties.Mask.EditMask = "c";
             this.txbReceivedMoney.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tbpSummary.SetRow(this.txbReceivedMoney, 1);
             this.txbReceivedMoney.Size = new System.Drawing.Size(192, 40);
             this.txbReceivedMoney.TabIndex = 1;
+            this.txbReceivedMoney.TextChanged += new System.EventHandler(this.txbMoneyChange);
             // 
             // txbTotalPrice
             // 
@@ -457,10 +460,12 @@
             this.txbTotalPrice.Name = "txbTotalPrice";
             this.txbTotalPrice.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.txbTotalPrice.Properties.Appearance.Options.UseFont = true;
+            this.txbTotalPrice.Properties.Mask.EditMask = "00000-9999";
             this.txbTotalPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tbpSummary.SetRow(this.txbTotalPrice, 0);
             this.txbTotalPrice.Size = new System.Drawing.Size(192, 40);
             this.txbTotalPrice.TabIndex = 0;
+            this.txbTotalPrice.TextChanged += new System.EventHandler(this.txbMoneyChange);
             // 
             // tbpNumberPad
             // 
@@ -668,7 +673,7 @@
             this.spcOderOver.Panel1.Controls.Add(this.splitContainerControl1);
             this.spcOderOver.Panel1.Text = "Panel1";
             this.spcOderOver.Panel2.Controls.Add(this.btnCancel);
-            this.spcOderOver.Panel2.Controls.Add(this.btnOrderComplate);
+            this.spcOderOver.Panel2.Controls.Add(this.btnSalesComplate);
             this.spcOderOver.Panel2.Controls.Add(this.btnOrderCancel);
             this.spcOderOver.Panel2.Controls.Add(this.btnCard);
             this.spcOderOver.Panel2.Controls.Add(this.btnCash);
@@ -728,16 +733,16 @@
             this.btnCancel.Text = "취 소";
             this.btnCancel.Click += new System.EventHandler(this.CancelButtonClicked);
             // 
-            // btnOrderComplate
+            // btnSalesComplate
             // 
-            this.btnOrderComplate.Appearance.Font = new System.Drawing.Font("한컴 백제 B", 15F, System.Drawing.FontStyle.Bold);
-            this.btnOrderComplate.Appearance.Options.UseFont = true;
-            this.btnOrderComplate.Location = new System.Drawing.Point(231, 108);
-            this.btnOrderComplate.Name = "btnOrderComplate";
-            this.btnOrderComplate.Size = new System.Drawing.Size(230, 103);
-            this.btnOrderComplate.TabIndex = 0;
-            this.btnOrderComplate.Text = "결제";
-            this.btnOrderComplate.Click += new System.EventHandler(this.OrderComplateButtonClicked);
+            this.btnSalesComplate.Appearance.Font = new System.Drawing.Font("한컴 백제 B", 15F, System.Drawing.FontStyle.Bold);
+            this.btnSalesComplate.Appearance.Options.UseFont = true;
+            this.btnSalesComplate.Location = new System.Drawing.Point(231, 108);
+            this.btnSalesComplate.Name = "btnSalesComplate";
+            this.btnSalesComplate.Size = new System.Drawing.Size(230, 103);
+            this.btnSalesComplate.TabIndex = 0;
+            this.btnSalesComplate.Text = "결제";
+            this.btnSalesComplate.Click += new System.EventHandler(this.OrderComplateButtonClicked);
             // 
             // btnOrderCancel
             // 
@@ -901,7 +906,7 @@
         private DevExpress.XtraEditors.SimpleButton btnUpMenuCount;
         private DevExpress.XtraEditors.SimpleButton btnDownMenuCount;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnOrderComplate;
+        private DevExpress.XtraEditors.SimpleButton btnSalesComplate;
         private DevExpress.XtraEditors.SimpleButton btnOrderCancel;
         private DevExpress.XtraEditors.SimpleButton btnCard;
         private DevExpress.XtraEditors.SimpleButton btnCash;

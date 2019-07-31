@@ -99,3 +99,5 @@ C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\obj\Debug\Pos.UI.exe.licen
 C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\bin\Debug\ko\EntityFramework.SqlServer.resources.dll
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\obj\Debug\Pos.UI.TabButton.resources
+C:\Users\kccistc\Desktop\PosProject\PosProject\Pos.UI\obj\Debug\Pos.UI.IngredientsOrder.resources

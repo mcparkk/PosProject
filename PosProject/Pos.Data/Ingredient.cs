@@ -11,7 +11,7 @@ namespace Pos.Data
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Ingredient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,16 +19,17 @@ namespace Pos.Data
         {
             this.OrderLines = new HashSet<OrderLine>();
         }
-    
+
         public int IngredientsID { get; set; }
         public string Name { get; set; }
         public int UnitPrice { get; set; }
         public int IngredientCategoryID { get; set; }
         public int SupplierID { get; set; }
-    
+
         public virtual IngredientsCategory IngredientsCategory { get; set; }
         public virtual Supplier Supplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLine> OrderLines { get; set; }
+
     }
 }

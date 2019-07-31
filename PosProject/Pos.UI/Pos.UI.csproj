@@ -65,16 +65,40 @@
     <Compile Include="Controls\MenuInfoButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Order\OrderForm.cs">
+    <Compile Include="Controls\uscTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uscTabControl.Designer.cs">
+      <DependentUpon>uscTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order\IngredientsOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Order\OrderForm.Designer.cs">
-      <DependentUpon>OrderForm.cs</DependentUpon>
+    <Compile Include="Order\IngredientsOrder.Designer.cs">
+      <DependentUpon>IngredientsOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\SalesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\SalesForm.Designer.cs">
+      <DependentUpon>SalesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PosDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Order\OrderForm.resx">
-      <DependentUpon>OrderForm.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\uscTabControl.resx">
+      <DependentUpon>uscTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order\IngredientsOrder.resx">
+      <DependentUpon>IngredientsOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\SalesForm.resx">
+      <DependentUpon>SalesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -88,6 +112,17 @@
     </Compile>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="PosDataSet.xsc">
+      <DependentUpon>PosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PosDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PosDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PosDataSet.xss">
+      <DependentUpon>PosDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,9 +139,7 @@
       <Name>Pos.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Buy\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
