@@ -9,28 +9,22 @@ namespace Pos.Data
 {
     public class SalesData
     {
-        public void UpAndDownButtonClicked(DevExpress.XtraGrid.Views.Grid.GridView gridView, List<SalesLine> salesLines ,bool upAndDown)
+       
+        public Sale InsertSale()
         {
-            if (gridView.GetFocusedRow() == null)
-                return;
+            using(PosEntities context = new PosEntities())
+            {
+                var sale = new Sale();
 
-            var quantity = (int)gridView.GetFocusedRowCellValue("Quantity");
-            var menuname = (string)gridView.GetFocusedRowCellValue("MenuName");
-            if (upAndDown == true)
-                quantity++;
-            else if(quantity != 0)
-                quantity--;
+                sale.SalesTime = DateTime.Now;
 
-            var line = salesLines.FirstOrDefault(x => x.MenuName == menuname);
-            // 컬럼의 수량 & 토탈 
-            line.Quantity = quantity;
-            line.TotalPrice = quantity * line.MenuUnitPrice;
-            // 업데이트 뷰
+                context.Sales.Add(sale);
 
-            gridView.RefreshData();
+                context.SaveChanges();
 
-            // 업데이트 토탈
-           
+                return sale; 
+            }
         }
+       
     }
 }

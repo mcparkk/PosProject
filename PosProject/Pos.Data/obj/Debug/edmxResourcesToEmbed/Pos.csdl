@@ -4,11 +4,11 @@
     <Key>
       <PropertyRef Name="IngredientsID" />
     </Key>
-    <Property Name="IngredientsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UnitPrice" Type="Int32" Nullable="false" />
-    <Property Name="IngredientCategoryID" Type="Int32" Nullable="false" />
-    <Property Name="SupplierID" Type="Int32" Nullable="false" />
+    <Property Name="IngredientsID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="UnitPrice" Nullable="false" Type="Int32" />
+    <Property Name="IngredientCategoryID" Nullable="false" Type="Int32" />
+    <Property Name="SupplierID" Nullable="false" Type="Int32" />
     <NavigationProperty Name="IngredientsCategory" Relationship="Self.FK_Ingredients_IngredientsCategory" FromRole="Ingredients" ToRole="IngredientsCategory" />
     <NavigationProperty Name="Supplier" Relationship="Self.FK_Ingredients_Supplier" FromRole="Ingredients" ToRole="Supplier" />
     <NavigationProperty Name="OrderLines" Relationship="Self.FK_ShoppingListLine_Ingredients" FromRole="Ingredients" ToRole="OrderLine" />
@@ -17,18 +17,18 @@
     <Key>
       <PropertyRef Name="IngredientCategoryID" />
     </Key>
-    <Property Name="IngredientCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IngredientCategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
     <NavigationProperty Name="Ingredients" Relationship="Self.FK_Ingredients_IngredientsCategory" FromRole="IngredientsCategory" ToRole="Ingredients" />
   </EntityType>
   <EntityType Name="Menu">
     <Key>
       <PropertyRef Name="MenuID" />
     </Key>
-    <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UnitPrice" Type="Int32" Nullable="false" />
-    <Property Name="MenuCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="MenuID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="UnitPrice" Nullable="false" Type="Int32" />
+    <Property Name="MenuCategoryID" Nullable="false" Type="Int32" />
     <NavigationProperty Name="MenuCategory" Relationship="Self.FK_Menu_MenuCategory" FromRole="Menu" ToRole="MenuCategory" />
     <NavigationProperty Name="SalesLines" Relationship="Self.FK_OrderLine_Menu" FromRole="Menu" ToRole="SalesLine" />
   </EntityType>
@@ -36,27 +36,27 @@
     <Key>
       <PropertyRef Name="MenuCategoryID" />
     </Key>
-    <Property Name="MenuCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MenuCategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
     <NavigationProperty Name="Menus" Relationship="Self.FK_Menu_MenuCategory" FromRole="MenuCategory" ToRole="Menu" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
       <PropertyRef Name="OrderID" />
     </Key>
-    <Property Name="OrderID" Type="Int32" Nullable="false" />
-    <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OrderID" Nullable="false" Type="Int32" />
+    <Property Name="OrderTime" Nullable="false" Precision="3" Type="DateTime" />
     <NavigationProperty Name="OrderLines" Relationship="Self.FK_ShoppingListLine_ShoppingList" FromRole="Order" ToRole="OrderLine" />
   </EntityType>
   <EntityType Name="OrderLine">
     <Key>
       <PropertyRef Name="OrderLineID" />
     </Key>
-    <Property Name="OrderLineID" Type="Int32" Nullable="false" />
-    <Property Name="IngredientsID" Type="Int32" Nullable="false" />
-    <Property Name="Quantity" Type="Int32" Nullable="false" />
-    <Property Name="TotalPrice" Type="Int32" Nullable="false" />
-    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="OrderLineID" Nullable="false" Type="Int32" />
+    <Property Name="IngredientsID" Nullable="false" Type="Int32" />
+    <Property Name="Quantity" Nullable="false" Type="Int32" />
+    <Property Name="TotalPrice" Nullable="false" Type="Int32" />
+    <Property Name="OrderID" Nullable="false" Type="Int32" />
     <NavigationProperty Name="Ingredient" Relationship="Self.FK_ShoppingListLine_Ingredients" FromRole="OrderLine" ToRole="Ingredients" />
     <NavigationProperty Name="Order" Relationship="Self.FK_ShoppingListLine_ShoppingList" FromRole="OrderLine" ToRole="Order" />
   </EntityType>
@@ -64,19 +64,19 @@
     <Key>
       <PropertyRef Name="SalesID" />
     </Key>
-    <Property Name="SalesID" Type="Int32" Nullable="false" />
-    <Property Name="SalesTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SalesID" Nullable="false" Type="Int32" />
+    <Property Name="SalesTime" Nullable="false" Precision="3" Type="DateTime" />
     <NavigationProperty Name="SalesLines" Relationship="Self.FK_OrderLine_Order" FromRole="Sales" ToRole="SalesLine" />
   </EntityType>
   <EntityType Name="SalesLine">
     <Key>
       <PropertyRef Name="SalesLineID" />
     </Key>
-    <Property Name="SalesLineID" Type="Int32" Nullable="false" />
-    <Property Name="MenuID" Type="Int32" Nullable="false" />
-    <Property Name="Quantity" Type="Int32" Nullable="false" />
-    <Property Name="TotalPrice" Type="Int32" Nullable="false" />
-    <Property Name="SalesID" Type="Int32" Nullable="false" />
+    <Property Name="SalesLineID" Nullable="false" Type="Int32" />
+    <Property Name="MenuID" Nullable="false" Type="Int32" />
+    <Property Name="Quantity" Nullable="false" Type="Int32" />
+    <Property Name="TotalPrice" Nullable="false" Type="Int32" />
+    <Property Name="SalesID" Nullable="false" Type="Int32" />
     <NavigationProperty Name="Menu" Relationship="Self.FK_OrderLine_Menu" FromRole="SalesLine" ToRole="Menu" />
     <NavigationProperty Name="Sale" Relationship="Self.FK_OrderLine_Order" FromRole="SalesLine" ToRole="Sales" />
   </EntityType>
@@ -84,14 +84,14 @@
     <Key>
       <PropertyRef Name="SupplierID" />
     </Key>
-    <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SupplierID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="PhoneNumber" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
     <NavigationProperty Name="Ingredients" Relationship="Self.FK_Ingredients_Supplier" FromRole="Supplier" ToRole="Ingredients" />
   </EntityType>
   <Association Name="FK_Ingredients_IngredientsCategory">
-    <End Role="IngredientsCategory" Type="Self.IngredientsCategory" Multiplicity="1" />
-    <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="*" />
+    <End Type="Self.IngredientsCategory" Multiplicity="1" Role="IngredientsCategory" />
+    <End Type="Self.Ingredient" Multiplicity="*" Role="Ingredients" />
     <ReferentialConstraint>
       <Principal Role="IngredientsCategory">
         <PropertyRef Name="IngredientCategoryID" />
@@ -102,8 +102,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Ingredients_Supplier">
-    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
-    <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="*" />
+    <End Type="Self.Supplier" Multiplicity="1" Role="Supplier" />
+    <End Type="Self.Ingredient" Multiplicity="*" Role="Ingredients" />
     <ReferentialConstraint>
       <Principal Role="Supplier">
         <PropertyRef Name="SupplierID" />
@@ -114,8 +114,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ShoppingListLine_Ingredients">
-    <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="1" />
-    <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+    <End Type="Self.Ingredient" Multiplicity="1" Role="Ingredients" />
+    <End Type="Self.OrderLine" Multiplicity="*" Role="OrderLine" />
     <ReferentialConstraint>
       <Principal Role="Ingredients">
         <PropertyRef Name="IngredientsID" />
@@ -126,8 +126,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Menu_MenuCategory">
-    <End Role="MenuCategory" Type="Self.MenuCategory" Multiplicity="1" />
-    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <End Type="Self.MenuCategory" Multiplicity="1" Role="MenuCategory" />
+    <End Type="Self.Menu" Multiplicity="*" Role="Menu" />
     <ReferentialConstraint>
       <Principal Role="MenuCategory">
         <PropertyRef Name="MenuCategoryID" />
@@ -138,8 +138,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderLine_Menu">
-    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
-    <End Role="SalesLine" Type="Self.SalesLine" Multiplicity="*" />
+    <End Type="Self.Menu" Multiplicity="1" Role="Menu" />
+    <End Type="Self.SalesLine" Multiplicity="*" Role="SalesLine" />
     <ReferentialConstraint>
       <Principal Role="Menu">
         <PropertyRef Name="MenuID" />
@@ -150,8 +150,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ShoppingListLine_ShoppingList">
-    <End Role="Order" Type="Self.Order" Multiplicity="1" />
-    <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+    <End Type="Self.Order" Multiplicity="1" Role="Order" />
+    <End Type="Self.OrderLine" Multiplicity="*" Role="OrderLine" />
     <ReferentialConstraint>
       <Principal Role="Order">
         <PropertyRef Name="OrderID" />
@@ -162,8 +162,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderLine_Order">
-    <End Role="Sales" Type="Self.Sale" Multiplicity="1" />
-    <End Role="SalesLine" Type="Self.SalesLine" Multiplicity="*" />
+    <End Type="Self.Sale" Multiplicity="1" Role="Sales" />
+    <End Type="Self.SalesLine" Multiplicity="*" Role="SalesLine" />
     <ReferentialConstraint>
       <Principal Role="Sales">
         <PropertyRef Name="SalesID" />
@@ -184,32 +184,32 @@
     <EntitySet Name="SalesLines" EntityType="Self.SalesLine" />
     <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
     <AssociationSet Name="FK_Ingredients_IngredientsCategory" Association="Self.FK_Ingredients_IngredientsCategory">
-      <End Role="IngredientsCategory" EntitySet="IngredientsCategories" />
-      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End EntitySet="IngredientsCategories" Role="IngredientsCategory" />
+      <End EntitySet="Ingredients" Role="Ingredients" />
     </AssociationSet>
     <AssociationSet Name="FK_Ingredients_Supplier" Association="Self.FK_Ingredients_Supplier">
-      <End Role="Supplier" EntitySet="Suppliers" />
-      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End EntitySet="Suppliers" Role="Supplier" />
+      <End EntitySet="Ingredients" Role="Ingredients" />
     </AssociationSet>
     <AssociationSet Name="FK_ShoppingListLine_Ingredients" Association="Self.FK_ShoppingListLine_Ingredients">
-      <End Role="Ingredients" EntitySet="Ingredients" />
-      <End Role="OrderLine" EntitySet="OrderLines" />
+      <End EntitySet="Ingredients" Role="Ingredients" />
+      <End EntitySet="OrderLines" Role="OrderLine" />
     </AssociationSet>
     <AssociationSet Name="FK_Menu_MenuCategory" Association="Self.FK_Menu_MenuCategory">
-      <End Role="MenuCategory" EntitySet="MenuCategories" />
-      <End Role="Menu" EntitySet="Menus" />
+      <End EntitySet="MenuCategories" Role="MenuCategory" />
+      <End EntitySet="Menus" Role="Menu" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderLine_Menu" Association="Self.FK_OrderLine_Menu">
-      <End Role="Menu" EntitySet="Menus" />
-      <End Role="SalesLine" EntitySet="SalesLines" />
+      <End EntitySet="Menus" Role="Menu" />
+      <End EntitySet="SalesLines" Role="SalesLine" />
     </AssociationSet>
     <AssociationSet Name="FK_ShoppingListLine_ShoppingList" Association="Self.FK_ShoppingListLine_ShoppingList">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="OrderLine" EntitySet="OrderLines" />
+      <End EntitySet="Orders" Role="Order" />
+      <End EntitySet="OrderLines" Role="OrderLine" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderLine_Order" Association="Self.FK_OrderLine_Order">
-      <End Role="Sales" EntitySet="Sales" />
-      <End Role="SalesLine" EntitySet="SalesLines" />
+      <End EntitySet="Sales" Role="Sales" />
+      <End EntitySet="SalesLines" Role="SalesLine" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderForm));
-            this.salesLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbsSalesLines = new System.Windows.Forms.BindingSource(this.components);
             this.TbcMenu = new DevExpress.XtraTab.XtraTabControl();
             this.TpgCoffee = new DevExpress.XtraTab.XtraTabPage();
             this.btnEspresso = new DevExpress.XtraEditors.SimpleButton();
@@ -82,7 +82,9 @@
             this.btnCard = new DevExpress.XtraEditors.SimpleButton();
             this.btnCash = new DevExpress.XtraEditors.SimpleButton();
             this.PnlMain = new DevExpress.Utils.Layout.TablePanel();
-            ((System.ComponentModel.ISupportInitialize)(this.salesLinesBindingSource)).BeginInit();
+            this.lblNowTime = new DevExpress.XtraEditors.LabelControl();
+            this.tmrCurrentTime = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dbsSalesLines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TbcMenu)).BeginInit();
             this.TbcMenu.SuspendLayout();
             this.TpgCoffee.SuspendLayout();
@@ -273,7 +275,7 @@
             // GrcSales
             // 
             this.PnlMain.SetColumn(this.GrcSales, 0);
-            this.GrcSales.DataSource = this.salesLinesBindingSource;
+            this.GrcSales.DataSource = this.dbsSalesLines;
             this.GrcSales.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GrcSales.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GrcSales.Location = new System.Drawing.Point(0, 40);
@@ -678,7 +680,7 @@
             // splitContainerControl1
             // 
             this.splitContainerControl1.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.IsSplitterFixed = true;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
@@ -717,49 +719,62 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("한컴 백제 B", 15F, System.Drawing.FontStyle.Bold);
+            this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.Location = new System.Drawing.Point(318, 0);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(143, 103);
             this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "취소";
+            this.btnCancel.Text = "취 소";
+            this.btnCancel.Click += new System.EventHandler(this.CancelButtonClicked);
             // 
             // btnOrderComplate
             // 
+            this.btnOrderComplate.Appearance.Font = new System.Drawing.Font("한컴 백제 B", 15F, System.Drawing.FontStyle.Bold);
+            this.btnOrderComplate.Appearance.Options.UseFont = true;
             this.btnOrderComplate.Location = new System.Drawing.Point(231, 108);
             this.btnOrderComplate.Name = "btnOrderComplate";
             this.btnOrderComplate.Size = new System.Drawing.Size(230, 103);
             this.btnOrderComplate.TabIndex = 0;
             this.btnOrderComplate.Text = "결제";
+            this.btnOrderComplate.Click += new System.EventHandler(this.OrderComplateButtonClicked);
             // 
             // btnOrderCancel
             // 
+            this.btnOrderCancel.Appearance.Font = new System.Drawing.Font("한컴 백제 B", 15F, System.Drawing.FontStyle.Bold);
+            this.btnOrderCancel.Appearance.Options.UseFont = true;
             this.btnOrderCancel.Location = new System.Drawing.Point(1, 108);
             this.btnOrderCancel.Name = "btnOrderCancel";
             this.btnOrderCancel.Size = new System.Drawing.Size(224, 103);
             this.btnOrderCancel.TabIndex = 0;
-            this.btnOrderCancel.Text = "매출취소";
+            this.btnOrderCancel.Text = "매출 취소";
             // 
             // btnCard
             // 
+            this.btnCard.Appearance.Font = new System.Drawing.Font("한컴 백제 B", 15F, System.Drawing.FontStyle.Bold);
+            this.btnCard.Appearance.Options.UseFont = true;
             this.btnCard.Location = new System.Drawing.Point(159, 0);
             this.btnCard.Name = "btnCard";
             this.btnCard.Size = new System.Drawing.Size(143, 103);
             this.btnCard.TabIndex = 0;
-            this.btnCard.Text = "카드";
+            this.btnCard.Text = "카 드";
             // 
             // btnCash
             // 
+            this.btnCash.Appearance.Font = new System.Drawing.Font("한컴 백제 B", 15F, System.Drawing.FontStyle.Bold);
+            this.btnCash.Appearance.Options.UseFont = true;
             this.btnCash.Location = new System.Drawing.Point(1, 0);
             this.btnCash.Name = "btnCash";
             this.btnCash.Size = new System.Drawing.Size(143, 103);
             this.btnCash.TabIndex = 0;
-            this.btnCash.Text = "현금";
+            this.btnCash.Text = "현 금";
             // 
             // PnlMain
             // 
             this.PnlMain.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 31.52F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 28.48F)});
+            this.PnlMain.Controls.Add(this.lblNowTime);
             this.PnlMain.Controls.Add(this.pncPayment);
             this.PnlMain.Controls.Add(this.pncCalculator);
             this.PnlMain.Controls.Add(this.GrcSales);
@@ -775,6 +790,23 @@
             this.PnlMain.Size = new System.Drawing.Size(1292, 802);
             this.PnlMain.TabIndex = 0;
             // 
+            // lblNowTime
+            // 
+            this.lblNowTime.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.lblNowTime.Appearance.Options.UseFont = true;
+            this.PnlMain.SetColumn(this.lblNowTime, 1);
+            this.lblNowTime.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblNowTime.Location = new System.Drawing.Point(1171, 3);
+            this.lblNowTime.Name = "lblNowTime";
+            this.PnlMain.SetRow(this.lblNowTime, 0);
+            this.lblNowTime.Size = new System.Drawing.Size(118, 24);
+            this.lblNowTime.TabIndex = 5;
+            this.lblNowTime.Text = "labelControl1";
+            // 
+            // tmrCurrentTime
+            // 
+            this.tmrCurrentTime.Interval = 1000;
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -782,12 +814,13 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1310, 818);
             this.Controls.Add(this.PnlMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "OrderForm";
             this.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OrderForm";
-            ((System.ComponentModel.ISupportInitialize)(this.salesLinesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbsSalesLines)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TbcMenu)).EndInit();
             this.TbcMenu.ResumeLayout(false);
             this.TpgCoffee.ResumeLayout(false);
@@ -814,12 +847,13 @@
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PnlMain)).EndInit();
             this.PnlMain.ResumeLayout(false);
+            this.PnlMain.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.BindingSource salesLinesBindingSource;
+        private System.Windows.Forms.BindingSource dbsSalesLines;
         private DevExpress.XtraTab.XtraTabControl TbcMenu;
         private DevExpress.Utils.Layout.TablePanel PnlMain;
         private DevExpress.XtraEditors.PanelControl pncPayment;
@@ -871,5 +905,7 @@
         private DevExpress.XtraEditors.SimpleButton btnOrderCancel;
         private DevExpress.XtraEditors.SimpleButton btnCard;
         private DevExpress.XtraEditors.SimpleButton btnCash;
+        private DevExpress.XtraEditors.LabelControl lblNowTime;
+        private System.Windows.Forms.Timer tmrCurrentTime;
     }
 }

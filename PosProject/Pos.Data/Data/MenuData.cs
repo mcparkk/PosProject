@@ -15,5 +15,7 @@ namespace Pos.Data
                 return context.Menus.FirstOrDefault(x => x.Name == name);
             }
         }
+
+        
     }
 }

@@ -5,22 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c58a960e719547cb963861b328aedd66" Name="Diagram1">
-        <EntityTypeShape EntityType="PosModel.Ingredient" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PosModel.IngredientsCategory" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PosModel.Menu" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PosModel.MenuCategory" Width="1.5" PointX="5.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PosModel.Order" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PosModel.OrderLine" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PosModel.Sale" Width="1.5" PointX="8" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PosModel.SalesLine" Width="1.5" PointX="10.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PosModel.Supplier" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <AssociationConnector Association="PosModel.FK_Ingredients_IngredientsCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="PosModel.FK_Ingredients_Supplier" ManuallyRouted="false" />
-        <AssociationConnector Association="PosModel.FK_ShoppingListLine_Ingredients" ManuallyRouted="false" />
-        <AssociationConnector Association="PosModel.FK_Menu_MenuCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="PosModel.FK_OrderLine_Menu" ManuallyRouted="false" />
-        <AssociationConnector Association="PosModel.FK_ShoppingListLine_ShoppingList" ManuallyRouted="false" />
-        <AssociationConnector Association="PosModel.FK_OrderLine_Order" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PosModel.Ingredient" PointX="3" PointY="1" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosModel.IngredientsCategory" PointX="0.75" PointY="1.375" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosModel.Menu" PointX="8" PointY="5" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosModel.MenuCategory" PointX="5.75" PointY="5.375" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosModel.Order" PointX="3" PointY="5.375" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosModel.OrderLine" PointX="5.25" PointY="1" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosModel.Sale" PointX="8" PointY="2.375" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosModel.SalesLine" PointX="10.25" PointY="5" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PosModel.Supplier" PointX="0.75" PointY="5.375" Width="1.5" IsExpanded="true" />
+        <AssociationConnector ManuallyRouted="false" Association="PosModel.FK_Ingredients_IngredientsCategory" />
+        <AssociationConnector ManuallyRouted="false" Association="PosModel.FK_Ingredients_Supplier" />
+        <AssociationConnector ManuallyRouted="false" Association="PosModel.FK_ShoppingListLine_Ingredients" />
+        <AssociationConnector ManuallyRouted="false" Association="PosModel.FK_Menu_MenuCategory" />
+        <AssociationConnector ManuallyRouted="false" Association="PosModel.FK_OrderLine_Menu" />
+        <AssociationConnector ManuallyRouted="false" Association="PosModel.FK_ShoppingListLine_ShoppingList" />
+        <AssociationConnector ManuallyRouted="false" Association="PosModel.FK_OrderLine_Order" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

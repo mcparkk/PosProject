@@ -28,25 +28,32 @@ namespace Pos.UI
             dbContext.SalesLines.LoadAsync().ContinueWith(loadTask =>
             {
                 // Bind data to control when loading complete
-                salesLinesBindingSource.DataSource = dbContext.SalesLines.Local.ToBindingList();
+                dbsSalesLines.DataSource = dbContext.SalesLines.Local.ToBindingList();
             }, System.Threading.Tasks.TaskScheduler.FromCurrentSynchronizationContext());
         }
 
 
-        
+
         List<SalesLine> salesLines = new List<SalesLine>();
         //리스트뷰에 정보
+
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             GrcSales.DataSource = salesLines;
+            tmrCurrentTime.Start();
+            tmrCurrentTime.Tick += new EventHandler(NowTimeUpdate);
+
         }
 
-      
+        private void NowTimeUpdate(object sender, EventArgs e)
+        {
+            lblNowTime.Text = DateTime.Now.ToString();
+        }
 
         private void MenuButtonClicked(object sender, EventArgs e)
         {
-
             var menu = DataRepository.Menu.GetByName(((SimpleButton)sender).Text.ToString());
             var salesLine = new SalesLine();
             // 새로 들어갈 라인
@@ -63,8 +70,7 @@ namespace Pos.UI
                 salesLines.Add(salesLine);
             }
             else
-            {
-
+            { 
                 existingSalesLine.Quantity++;
                 existingSalesLine.TotalPrice = existingSalesLine.MenuUnitPrice * existingSalesLine.Quantity;
                 // 있음
@@ -72,7 +78,7 @@ namespace Pos.UI
             }
 
             GrvSales.RefreshData();
-            
+
             UpdateLblTotalText();
 
         }
@@ -118,7 +124,7 @@ namespace Pos.UI
 
             // update view & total
 
-            
+
             GrvSales.RefreshData();
 
             //업데이트 토탈
@@ -128,9 +134,9 @@ namespace Pos.UI
         private void UpButtonClicked(object sender, EventArgs e)
         {
             // 선택된 컬럼
-            
 
-            DataRepository.Sales.UpAndDownButtonClicked(GrvSales, salesLines, true);
+
+            DataRepository.SalesLine.UpAndDownButtonClicked(GrvSales, salesLines, true);
 
             // 업데이트 토탈
             UpdateLblTotalText();
@@ -139,8 +145,8 @@ namespace Pos.UI
 
         private void DownButtonClicked(object sender, EventArgs e)
         {
-           
-            DataRepository.Sales.UpAndDownButtonClicked(GrvSales, salesLines, false);
+
+            DataRepository.SalesLine.UpAndDownButtonClicked(GrvSales, salesLines, false);
 
             // 업데이트 토탈
             UpdateLblTotalText();
@@ -155,6 +161,40 @@ namespace Pos.UI
             }
             txbTotalPrice.Text = sum.ToString();
 
-        } 
+        }
+
+        private void CancelButtonClicked(object sender, EventArgs e)
+        {
+
+            salesLines.RemoveRange(0, salesLines.Count());
+
+            GrvSales.RefreshData();
+
+            txbTotalPrice.Text = DefaultValue;
+
+        }
+
+        private void OrderComplateButtonClicked(object sender, EventArgs e)
+        {
+
+
+            // 그리드 뷰의 정보 db에 전송하여 SalesLine row 생성 & sales row 생성 
+            DataRepository.SalesLine.InsertSalesLine(salesLines);
+
+
+            CancelButtonClicked(sender, e);
+
+            ////salesLines 초기화
+            //salesLines.RemoveRange(0, salesLines.Count());
+            
+            //// 그리드 뷰 초기화 
+            //GrvSales.RefreshData();
+
+            //// 텍스트 박스 초기화 
+            //txbTotalPrice.Text = DefaultValue;
+
+        }
+
+
     }
 }
