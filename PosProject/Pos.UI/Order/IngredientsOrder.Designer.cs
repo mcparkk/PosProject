@@ -76,6 +76,7 @@
             this.colSupplierPhoneNumber});
             this.grvOrder.GridControl = this.grcOrder;
             this.grvOrder.Name = "grvOrder";
+            
             // 
             // colQuantity
             // 

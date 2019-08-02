@@ -22,6 +22,7 @@ namespace Pos.UI
             BonusSkins.Register();
             //Application.Run(new IngredientsOrder());
             Application.Run(new OrderForm());
+            //Application.Run(new SalesCancelForm());
         }
     }
 }
